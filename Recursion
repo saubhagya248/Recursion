@@ -1,0 +1,40 @@
+// Java program to print all combination of size r in an array of size n
+import java.io.*;
+import java.util.*;
+class Main {
+    static void combinationUtil(int arr[], int data[], int start, int end, int index, int r){
+        if(index==r){
+            
+            for(int j=0;j<r;j++)
+                System.out.print(data[j]+" ");
+          	
+            System.out.println();
+            
+            return;
+        }
+        
+        // to find all combinations recursively by fixing first element in data
+        for(int i=start;i<=end && end-i+1 >= r-index;i++){//[3,4]
+            data[index] = arr[i];
+            combinationUtil(arr,data,i+1,end,index+1,r);
+        }
+    }
+
+static void printCombination(int arr[], int n, int r)
+    {
+        // A temporary array to store all combination one by one
+        int data[]=new int[r];
+ 
+        // Print all combination using temporary array 'data[]'
+        combinationUtil(arr, data, 0, n-1, 0, r);
+    }
+ 
+    /*Driver function to check for above function*/
+    public static void main (String[] args) throws java.lang.Exception {
+        int arr[] = {1, 2, 3, 4};
+        int r = 2;
+        int n = arr.length;
+        printCombination(arr, n, r);
+    }
+    
+}
